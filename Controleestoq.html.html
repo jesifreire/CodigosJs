@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="Utf-8">
+    <title>Cadastro de Estoque</title>
+
+  
+</head>
+<body>
+    <script>
+        var Produto = function(nome, quantEstoque, valor){
+            this.nome = nome;
+            this.quantEstoque = quantEstoque;
+            this.valor = valor;
+        };
+        Produto.prototype.adicionaEstoque = function(adiciona){
+            this.quantEstoque = this.quantEstoque + adiciona;
+        };
+        Produto.prototype.baixaEstoque = function(baixa){
+            if(this.quantEstoque >= baixa)
+            this.quantEstoque = this.quantEstoque + adiciona;
+            else
+                alert("Êpa...Estoque insuficiente");
+        };
+        Produto.prototype.imprimeInventario = function(){
+            confirm('-----=== Inventário de Almoxarifado ===-----\nNome: ' + this.nome  
+            +'\nQuantidade Estoque: ' + this.quantEstoque 
+            +'\nValor: R$ ' + this.valor);
+        };
+
+        var produto;
+
+        function cadastra(){
+            var nome = document.getElementById('nome').value;
+            var quantEstoque = parseFloat(document.getElementById('quantEstoque').value);
+            var valor = parseFloat(document.getElementById('valor').value);
+
+            produto = new Produto(nome, quantEstoque, valor);
+            produto.imprimeInventario();
+        };
+         function adiciona(){
+             var  incluir = parseFloat (prompt('Digite a quentidade a ser incluida em estoque: '));
+             produto.adicionaEstoque(incluir);
+             produto.imprimeInventario();
+
+         };
+         function baixa(){
+             var baixar = parseFloat(prompt('Digite a quantidade de produtos para dar baixa: '));
+             produto.baixaEstoque(baixa);
+             produto.imprimeInventario();
+         };
+    </script>
+
+    <p>Nome do Produto: <input type="text" id="nome"></p>
+    <p>Quantidade em Estoque: <input type="text" id="quantEstoque"></p>
+    <p>Valor do Produto: R$ <input type="text" id="valor"></p>
+    <p><button type="button" onclick="cadastra()">Cadastrar produto</button></p>
+    <p><button type="button" onclick="adiciona()">Adicionar produto em estoque</button></p>
+    <p><button type="button" onclick="baixa()">Dar baixa em estoque</button></p>
+    <p><button type="button" onclick="produto.imprimeInventario()">Imprimir Inventário</button></p>
+    
+</body>
+</html>
